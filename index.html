@@ -1,225 +1,905 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Umut Tur</title>
-  <meta name="description" content="Umut Tur — Software student building C++ and Java projects." />
-  <style>
-    :root {
-      --bg: #000000;
-      --card: #0b0b0b;
-      --text: #f5f5f5;
-      --muted: #b0b0b0;
-      --red: #e10600;
-      --border: rgba(255,255,255,0.08);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Umut Tur — Software Developer</title>
+<meta name="description" content="Umut Tur — Software Developer building C++ and Java projects, based in Istanbul." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060607;
+    --panel: #0d0d0f;
+    --panel-2: #131316;
+    --text: #f5f5f5;
+    --muted: #97979c;
+    --muted-dim: #6c6c70;
+    --red: #e10600;
+    --red-dim: rgba(225,6,0,0.4);
+    --amber: #ffb400;
+    --border: rgba(255,255,255,0.08);
+    --border-soft: rgba(255,255,255,0.05);
+    --radius: 20px;
+    --font-display: 'Rajdhani', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-    body {
-      background: radial-gradient(70% 50% at 50% 0%, #140000 0%, var(--bg) 60%);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
+  body {
+    font-family: var(--font-body);
+    background:
+      radial-gradient(60% 40% at 50% 0%, #170202 0%, transparent 60%),
+      var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 20px 14px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
 
-    .card {
-      background: linear-gradient(180deg, #0e0000, var(--card));
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      max-width: 520px;
-      width: 100%;
-      padding: 36px 34px 32px;
-      text-align: center;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.85);
-      animation: fadeUp .6s ease-out;
-    }
+  a { color: inherit; }
 
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 22px;
-    }
+  .wrap {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-    .avatar img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--red);
-      box-shadow: 0 0 45px rgba(225,6,0,0.45);
-    }
+  .panel {
+    background: linear-gradient(180deg, #100000, var(--panel));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.75);
+    animation: fadeUp .5s ease-out both;
+  }
 
-    h1 {
-      font-size: 32px;
-      letter-spacing: 0.5px;
-    }
+  /* ---------- checkered divider (signature motif) ---------- */
+  .flag-divider {
+    height: 7px;
+    width: 100%;
+    background-image:
+      linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+      linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-size: 14px 14px;
+    background-position: 0 0, 7px 7px;
+    opacity: 0.14;
+  }
 
-    .meta {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 4px;
-    }
+  /* ---------- profile header ---------- */
+  .profile {
+    padding: 34px 30px 26px;
+    text-align: center;
+  }
 
-    .meta span {
-      font-size: 14px;
-      color: var(--muted);
-    }
+  .avatar-wrap {
+    position: relative;
+    width: 118px;
+    height: 118px;
+    margin: 0 auto 16px;
+  }
 
-    .highlight {
-      color: #ffffff;
-      font-weight: 500;
-    }
+  .avatar-wrap img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--red);
+    box-shadow: 0 0 40px rgba(225,6,0,0.4);
+    display: block;
+  }
 
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(225,6,0,0.45), transparent);
-      margin: 24px 0;
-    }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--amber);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
 
-    .focus {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #d6d6d6;
-      max-width: 420px;
-      margin: 0 auto;
-    }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 38px;
+    letter-spacing: 0.3px;
+    line-height: 1.15;
+    margin-top: 4px;
+  }
 
-    .links {
-      display: flex;
-      justify-content: center;
-      margin-top: 22px;
-    }
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--muted);
+    font-size: 13.5px;
+    margin-top: 6px;
+  }
 
-    .github {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      color: var(--text);
-      transition: transform .2s ease, box-shadow .2s ease, border .2s ease;
-      animation: pulse 3.5s ease-in-out infinite;
-    }
+  .location svg { width: 13px; height: 13px; stroke: var(--muted); fill: none; stroke-width: 2; }
 
-    .github:hover {
-      transform: translateY(-3px);
-      border-color: var(--red);
-      box-shadow: 0 14px 30px rgba(225,6,0,0.4);
-    }
+  /* ---------- telemetry stat strip ---------- */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 24px;
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.015);
+  }
 
-    .icon {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      stroke-width: 1.8;
-      fill: none;
-    }
+  .stat {
+    padding: 14px 6px 12px;
+    text-align: center;
+    border-right: 1px solid var(--border-soft);
+  }
+  .stat:last-child { border-right: none; }
 
-    footer {
-      margin-top: 26px;
-      font-size: 12px;
-      color: #7a7a7a;
-    }
-    @media (max-width: 600px) {
-      body {
-        padding: 16px;
-      }
+  .stat-num {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
 
-      .card {
-        padding: 28px 22px 26px;
-        border-radius: 18px;
-      }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--muted-dim);
+    margin-top: 3px;
+  }
 
-      .avatar img {
-        width: 110px;
-        height: 110px;
-      }
+  .bio {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #d6d6d6;
+    max-width: 440px;
+    margin: 22px auto 0;
+  }
 
-      h1 {
-        font-size: 26px;
-      }
+  .bio .hl { color: #fff; font-weight: 600; }
 
-      .meta span {
-        font-size: 13px;
-        line-height: 1.5;
-      }
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
 
-      .focus {
-        font-size: 14px;
-        line-height: 1.65;
-      }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    font-size: 12.5px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    color: var(--text);
+  }
 
-      .github {
-        width: 46px;
-        height: 46px;
-      }
+  .btn:hover { transform: translateY(-2px); border-color: var(--red); box-shadow: 0 12px 26px rgba(225,6,0,0.28); }
+  .btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+  .btn.primary { background: var(--red); border-color: var(--red); }
+  .btn.primary:hover { box-shadow: 0 12px 26px rgba(225,6,0,0.45); }
 
-      footer {
-        font-size: 11px;
-      }
-    }
+  .since {
+    margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--muted-dim);
+    letter-spacing: 0.4px;
+  }
 
-  
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  /* ---------- about panel ---------- */
+  .about { padding: 26px 26px 24px; }
 
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 rgba(225,6,0,0); }
-      50% { box-shadow: 0 0 18px rgba(225,6,0,0.25); }
-    }
+  .about-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
 
-  </style>
+  .about-head h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.4px;
+  }
+
+  .about-head .eyebrow { font-size: 10.5px; }
+
+  .about-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #d6d6d6;
+  }
+
+  .about-text + .about-text { margin-top: 12px; }
+  .about-text .hl { color: #fff; font-weight: 600; }
+
+  .focus-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .focus-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    padding: 5px 11px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .focus-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+
+  /* ---------- projects panel ---------- */
+  .projects { padding: 26px 22px 22px; }
+
+  .projects-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .projects-title {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .projects-title h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.4px;
+  }
+
+  .count-pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-soft);
+    padding: 2px 9px;
+    border-radius: 999px;
+  }
+
+  .controls {
+    position: sticky;
+    top: 10px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 10px;
+    background: rgba(10,10,11,0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+  }
+
+  .search-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 12px;
+  }
+
+  .search-box svg { width: 14px; height: 14px; stroke: var(--muted); fill: none; flex-shrink: 0; }
+
+  .search-box input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 13px;
+    font-family: var(--font-body);
+  }
+
+  .search-box input::placeholder { color: var(--muted-dim); }
+
+  .sort-select {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    padding: 0 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .sort-select:hover { border-color: var(--red); color: var(--text); }
+  .sort-select:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+  .chip-row {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+  .chip-row::-webkit-scrollbar { display: none; }
+
+  .chip {
+    flex-shrink: 0;
+    font-size: 11.5px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: rgba(255,255,255,0.02);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--chip-color, var(--muted)); }
+  .chip:hover { border-color: var(--red); color: var(--text); }
+  .chip.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .chip.active .dot { background: #fff; }
+  .chip:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+  /* language distribution bar */
+  .lang-bar-wrap { margin-top: 16px; }
+
+  .lang-bar-label {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted-dim);
+    margin-bottom: 6px;
+  }
+
+  .lang-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .lang-bar-seg {
+    height: 100%;
+    transition: width .6s ease;
+  }
+
+  .lang-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 9px;
+  }
+
+  .lang-legend span {
+    font-size: 11px;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+  }
+
+  .lang-legend .dot { width: 7px; height: 7px; border-radius: 50%; }
+
+  /* repo grid */
+  .repo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .repo-card {
+    position: relative;
+    background: var(--panel-2);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 15px 15px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: cardIn .45s ease forwards;
+  }
+
+  .repo-card:hover { transform: translateY(-3px); border-color: var(--red-dim); background: #171012; }
+  .repo-card:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+  .rank-badge {
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    color: #14100a;
+  }
+  .rank-1 { background: var(--amber); }
+  .rank-2 { background: #cfd4d8; }
+  .rank-3 { background: #c98a4b; }
+
+  .repo-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .repo-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+  }
+
+  .fork-badge {
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px 7px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .repo-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    min-height: 34px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .repo-stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: auto;
+    font-family: var(--font-mono);
+  }
+
+  .repo-stats span { display: inline-flex; align-items: center; gap: 4px; }
+  .lang-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: var(--dot-color, var(--red)); }
+  .stat-icon { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+  .projects-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 34px 10px;
+  }
+
+  .projects-state .btn { margin-top: 12px; }
+
+  .skeleton {
+    height: 104px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 37%, rgba(255,255,255,0.02) 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+    border: 1px solid var(--border-soft);
+  }
+
+  .view-all {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 12.5px;
+    color: var(--muted);
+    text-decoration: none;
+    border-top: 1px solid var(--border-soft);
+    padding-top: 14px;
+  }
+  .view-all:hover { color: var(--red); }
+
+  .toast {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--amber);
+  }
+
+  footer {
+    font-size: 11px;
+    color: var(--muted-dim);
+    text-align: center;
+    font-family: var(--font-mono);
+  }
+
+  /* ---------- mobile ---------- */
+  @media (max-width: 600px) {
+    body { padding: 16px 10px 32px; }
+    .profile { padding: 28px 20px 22px; }
+    .avatar-wrap { width: 96px; height: 96px; }
+    h1 { font-size: 30px; }
+    .stat-num { font-size: 18px; }
+    .bio { font-size: 13.5px; }
+    .about { padding: 20px 18px 18px; }
+    .projects { padding: 20px 16px 18px; }
+    .repo-grid { grid-template-columns: 1fr; }
+    .controls { position: static; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, .repo-card, .panel, .btn { animation: none !important; transition: none !important; }
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
+  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+</style>
 </head>
 <body>
 
-  <div class="card">
+<div class="wrap">
 
-    <header>
-      <div class="avatar">
-        <img src="https://github.com/umttur.png" alt="Umut Tur profile photo" />
-      </div>
-      <h1>Umut Tur</h1>
-      <div class="meta">
-        <span><span class="highlight">Software Student</span> based in <span class="highlight">Istanbul, Turkey</span></span>
-      </div>
-    </header>
-
-    <div class="divider"></div>
-
-    <div class="focus">
-      You can explore my <span class="highlight">C++</span> and <span class="highlight">Java</span> projects on my GitHub profile,
-      where I focus on clean code, problem-solving, and real-world projects.
+  <section class="panel profile">
+    <div class="avatar-wrap">
+      <img src="https://github.com/umttur.png" alt="Umut Tur profile photo" />
+    </div>
+    <div class="eyebrow">Software Developer</div>
+    <h1>Umut Tur</h1>
+    <div class="location">
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Istanbul, Turkey
     </div>
 
-    <div class="links">
-      <a class="github" href="https://github.com/umttur" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg class="icon" viewBox="0 0 24 24">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-        </svg>
+    <div class="stat-strip" id="statStrip">
+      <div class="stat"><div class="stat-num" data-target="0" id="statRepos">0</div><div class="stat-label">Repos</div></div>
+      <div class="stat"><div class="stat-num" data-target="0" id="statStars">0</div><div class="stat-label">Stars</div></div>
+      <div class="stat"><div class="stat-num" data-target="0" id="statFollowers">0</div><div class="stat-label">Followers</div></div>
+    </div>
+
+    <p class="bio">
+      Building modern, performance-focused software with <span class="hl">C++</span>.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href="https://github.com/umttur" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
       </a>
     </div>
 
-    <footer>© 2025 Umut Tur</footer>
+    <div class="since" id="memberSince"></div>
+  </section>
+
+<section class="panel about" aria-labelledby="about-heading">
+  <div class="about-head">
+    <span class="eyebrow">Developer Profile</span>
+  </div>
+  <h2 id="about-heading" style="margin-bottom:14px;">About Me</h2>
+  <p class="about-text">
+    Hi, I'm <span class="hl">Umut</span>. I'm a <span class="hl">C++ software developer</span>
+    with a strong interest in <span class="hl">game development</span> and
+    <span class="hl">game engine development</span>. I enjoy building projects,
+    solving technical challenges, and turning ideas into working software.
+  </p>
+  <p class="about-text">
+    I've contributed to various game development projects and I'm always looking
+    for new ways to improve my programming skills by building, experimenting,
+    and learning through practice.
+  </p>
+  <div class="focus-tags">
+    <span class="focus-tag"><span class="dot"></span>C++</span>
 
   </div>
+</section>
+
+  <section class="panel projects" aria-labelledby="projects-heading">
+    <div class="projects-head">
+      <div class="projects-title">
+        <h2 id="projects-heading">Projects</h2>
+        <span class="count-pill" id="countPill">—</span>
+      </div>
+      <select class="sort-select" id="sortSelect" aria-label="Sort projects">
+        <option value="updated">Recently updated</option>
+        <option value="stars">Most stars</option>
+        <option value="forks">Most forks</option>
+        <option value="name">Name (A–Z)</option>
+      </select>
+    </div>
+
+    <div class="controls">
+      <div class="search-row">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="searchInput" placeholder="Search projects…" aria-label="Search projects" />
+        </div>
+      </div>
+      <div class="chip-row" id="chipRow"></div>
+    </div>
+
+    <div class="lang-bar-wrap" id="langBarWrap" style="display:none;">
+      <div class="lang-bar-label">Language distribution</div>
+      <div class="lang-bar" id="langBar"></div>
+      <div class="lang-legend" id="langLegend"></div>
+    </div>
+
+    <div class="repo-grid" id="repoGrid">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+
+    <a class="view-all" href="https://github.com/umttur?tab=repositories" target="_blank" rel="noopener">View all repositories on GitHub &rarr;</a>
+  </section>
+
+  <footer>Live data from GitHub · © 2025 Umut Tur</footer>
+
+</div>
+
+<script>
+(function () {
+  const GITHUB_USER = 'umttur';
+  const grid = document.getElementById('repoGrid');
+  const sortSelect = document.getElementById('sortSelect');
+  const searchInput = document.getElementById('searchInput');
+  const chipRow = document.getElementById('chipRow');
+  const countPill = document.getElementById('countPill');
+  const langBarWrap = document.getElementById('langBarWrap');
+  const langBar = document.getElementById('langBar');
+  const langLegend = document.getElementById('langLegend');
+  const memberSince = document.getElementById('memberSince');
+
+  const LANG_COLORS = {
+    'C++': '#f34b7d', 'C': '#555555', 'Java': '#b07219', 'JavaScript': '#f1e05a',
+    'TypeScript': '#3178c6', 'Python': '#3572A5', 'HTML': '#e34c26', 'CSS': '#563d7c',
+    'Shell': '#89e051', 'C#': '#178600', 'Go': '#00ADD8', 'Rust': '#dea584',
+    'Kotlin': '#A97BFF', 'Swift': '#F05138', 'PHP': '#4F5D95', 'Ruby': '#701516',
+    'Dart': '#00B4AB', 'Dockerfile': '#384d54', 'Jupyter Notebook': '#DA5B0B'
+  };
+
+  let allRepos = [];
+  let activeLang = 'All';
+
+  function timeAgo(dateStr) {
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const day = 86400000;
+    const days = Math.floor(diff / day);
+    if (days < 1) return 'today';
+    if (days === 1) return 'yesterday';
+    if (days < 30) return days + 'd ago';
+    const months = Math.floor(days / 30);
+    if (months < 12) return months + 'mo ago';
+    return Math.floor(months / 12) + 'y ago';
+  }
+
+  function escapeHtml(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  function animateCount(el, target) {
+    const duration = 900;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target).toLocaleString();
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function renderState(message, showRetry) {
+    grid.innerHTML = `<div class="projects-state">${message}${showRetry ? '<br><button class="btn" id="retryBtn" type="button">Retry</button>' : ''}</div>`;
+    if (showRetry) document.getElementById('retryBtn').addEventListener('click', loadRepos);
+  }
+
+  function renderChips(repos) {
+    const counts = {};
+    repos.forEach(r => { if (r.language) counts[r.language] = (counts[r.language] || 0) + 1; });
+    const langs = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    const chips = ['All', ...langs];
+    chipRow.innerHTML = chips.map(lang => {
+      const color = lang === 'All' ? null : (LANG_COLORS[lang] || '#8b8b8b');
+      const isActive = lang === activeLang;
+      return `<button type="button" class="chip${isActive ? ' active' : ''}" data-lang="${escapeHtml(lang)}">
+        ${color ? `<span class="dot" style="--chip-color:${color}"></span>` : ''}${escapeHtml(lang)}
+      </button>`;
+    }).join('');
+    chipRow.querySelectorAll('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeLang = btn.dataset.lang;
+        chipRow.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c.dataset.lang === activeLang));
+        applyFilters();
+      });
+    });
+  }
+
+  function renderLangBar(repos) {
+    const counts = {};
+    let total = 0;
+    repos.forEach(r => { if (r.language) { counts[r.language] = (counts[r.language] || 0) + 1; total++; } });
+    if (!total) { langBarWrap.style.display = 'none'; return; }
+    langBarWrap.style.display = 'block';
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    langBar.innerHTML = sorted.map(([lang, count]) => {
+      const pct = (count / total * 100).toFixed(1);
+      const color = LANG_COLORS[lang] || '#8b8b8b';
+      return `<div class="lang-bar-seg" style="width:${pct}%;background:${color};" title="${escapeHtml(lang)} ${pct}%"></div>`;
+    }).join('');
+    langLegend.innerHTML = sorted.slice(0, 6).map(([lang, count]) => {
+      const pct = (count / total * 100).toFixed(0);
+      const color = LANG_COLORS[lang] || '#8b8b8b';
+      return `<span><span class="dot" style="background:${color}"></span>${escapeHtml(lang)} · ${pct}%</span>`;
+    }).join('');
+  }
+
+  function renderRepos(repos) {
+    countPill.textContent = `${repos.length} of ${allRepos.length}`;
+    if (!repos.length) {
+      renderState('No projects match your filters.');
+      return;
+    }
+    const topStars = [...repos].filter(r => r.stargazers_count > 0)
+      .sort((a, b) => b.stargazers_count - a.stargazers_count)
+      .slice(0, 3)
+      .map(r => r.id);
+
+    grid.innerHTML = repos.map((r, i) => {
+      const lang = r.language || null;
+      const dotColor = lang ? (LANG_COLORS[lang] || '#8b8b8b') : null;
+      const desc = r.description ? escapeHtml(r.description) : 'No description provided.';
+      const rankIdx = topStars.indexOf(r.id);
+      const rankBadge = rankIdx === -1 ? '' : `<span class="rank-badge rank-${rankIdx + 1}">P${rankIdx + 1}</span>`;
+      return `
+        <a class="repo-card" style="animation-delay:${Math.min(i, 8) * 0.04}s" href="${r.html_url}" target="_blank" rel="noopener">
+          ${rankBadge}
+          <div class="repo-top">
+            <span class="repo-name">${escapeHtml(r.name)}</span>
+            ${r.fork ? '<span class="fork-badge">Fork</span>' : ''}
+          </div>
+          <p class="repo-desc">${desc}</p>
+          <div class="repo-stats">
+            ${lang ? `<span><span class="lang-dot" style="--dot-color:${dotColor}"></span>${escapeHtml(lang)}</span>` : ''}
+            <span>
+              <svg class="stat-icon" viewBox="0 0 24 24" stroke="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9 12 2"/></svg>
+              ${r.stargazers_count}
+            </span>
+            <span>
+              <svg class="stat-icon" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 3v12M18 9v6M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 15a9 9 0 0 0 9 6"/></svg>
+              ${r.forks_count}
+            </span>
+            <span style="margin-left:auto;">${timeAgo(r.pushed_at)}</span>
+          </div>
+        </a>
+      `;
+    }).join('');
+  }
+
+  function sortRepos(repos, mode) {
+    const copy = [...repos];
+    if (mode === 'stars') copy.sort((a, b) => b.stargazers_count - a.stargazers_count);
+    else if (mode === 'forks') copy.sort((a, b) => b.forks_count - a.forks_count);
+    else if (mode === 'name') copy.sort((a, b) => a.name.localeCompare(b.name));
+    else copy.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+    return copy;
+  }
+
+  function applyFilters() {
+    const q = searchInput.value.trim().toLowerCase();
+    let filtered = allRepos.filter(r => {
+      const matchesLang = activeLang === 'All' || r.language === activeLang;
+      const matchesQuery = !q || r.name.toLowerCase().includes(q) || (r.description || '').toLowerCase().includes(q);
+      return matchesLang && matchesQuery;
+    });
+    renderRepos(sortRepos(filtered, sortSelect.value));
+  }
+
+  async function loadRepos() {
+    renderState('');
+    grid.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>';
+    try {
+      const [userRes, reposRes] = await Promise.all([
+        fetch(`https://api.github.com/users/${GITHUB_USER}`),
+        fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100`)
+      ]);
+      if (!userRes.ok || !reposRes.ok) {
+        const status = !reposRes.ok ? reposRes.status : userRes.status;
+        throw new Error(status === 403 ? 'rate-limited' : 'load-failed');
+      }
+      const user = await userRes.json();
+      const repos = (await reposRes.json()).filter(r => !r.private);
+
+      allRepos = repos;
+
+      const totalStars = repos.reduce((sum, r) => sum + r.stargazers_count, 0);
+      animateCount(document.getElementById('statRepos'), user.public_repos ?? repos.length);
+      animateCount(document.getElementById('statStars'), totalStars);
+      animateCount(document.getElementById('statFollowers'), user.followers ?? 0);
+
+      if (user.created_at) {
+        const year = new Date(user.created_at).getFullYear();
+        memberSince.textContent = `ON GITHUB SINCE ${year}`;
+      }
+
+      if (!repos.length) {
+        renderState('No public repositories yet.');
+        countPill.textContent = '0';
+        langBarWrap.style.display = 'none';
+        chipRow.innerHTML = '';
+        return;
+      }
+
+      renderChips(repos);
+      renderLangBar(repos);
+      applyFilters();
+    } catch (err) {
+      const msg = err.message === 'rate-limited'
+        ? 'GitHub API rate limit reached. Try again shortly, or view the profile directly.'
+        : 'Could not load repositories right now.';
+      renderState(msg, true);
+      countPill.textContent = '—';
+    }
+  }
+
+  sortSelect.addEventListener('change', applyFilters);
+  searchInput.addEventListener('input', applyFilters);
+
+  loadRepos();
+})();
+</script>
 
 </body>
 </html>
